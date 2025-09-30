@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bnwt2285mv60c"]
+[gd_scene load_steps=23 format=3 uid="uid://bnwt2285mv60c"]
 
 [ext_resource type="Script" uid="uid://btlnumc3qxe78" path="res://game/objects/entities/player/player.gd" id="1_fkr20"]
 [ext_resource type="Texture2D" uid="uid://ke7o3ydoqjq4" path="res://assets/sprites/entity_sprites/players/player_spr_idle.png" id="2_u5gyh"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cy73nclcn1wbr" path="res://assets/sprites/entity_sprites/players/player_spr_run.png" id="3_u5gyh"]
 [ext_resource type="Texture2D" uid="uid://bsvocrmfofheh" path="res://assets/sprites/entity_sprites/players/dash_sfx_2.png" id="5_lvpx6"]
 [ext_resource type="AudioStream" uid="uid://cd4it03aeggri" path="res://assets/audio/dash_sfx.mp3" id="6_nggnu"]
+[ext_resource type="AudioStream" uid="uid://cupbonjtx5mfv" path="res://assets/audio/coin_sfx.wav" id="7_b6cxe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lvpx6"]
 radius = 12.0
@@ -157,4 +158,10 @@ position_smoothing_speed = 1.0
 
 [node name="DashSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_nggnu")
-volume_db = -24.0
+volume_db = -36.404
+bus = &"SFX"
+
+[node name="CoinSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_b6cxe")
+volume_db = -36.788
+bus = &"SFX"

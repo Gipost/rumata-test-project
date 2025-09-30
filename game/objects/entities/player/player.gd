@@ -98,3 +98,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func take_damage():
 	switch_state(State.DEAD)
+
+func coin_sfx():
+	$CoinSFX.play()

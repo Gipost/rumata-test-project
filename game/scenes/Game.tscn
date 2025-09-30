@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c51dppl4y7qa"]
+[gd_scene load_steps=7 format=3 uid="uid://c51dppl4y7qa"]
 
 [ext_resource type="PackedScene" uid="uid://c3f24ym2xnjh2" path="res://game/scenes/level.tscn" id="1_joedu"]
 [ext_resource type="Script" uid="uid://cv7d2tv5sv0n0" path="res://game/objects/controllers/GameController/GameController.gd" id="1_x4q2s"]
 [ext_resource type="PackedScene" uid="uid://dkc6phpj7pr0p" path="res://game/scenes/coins_counter.tscn" id="2_3n1n5"]
 [ext_resource type="PackedScene" uid="uid://wxvakm5ykbrh" path="res://game/scenes/menu.tscn" id="3_hu331"]
 [ext_resource type="PackedScene" uid="uid://xtkhnr8ppmdb" path="res://game/scenes/instruction.tscn" id="5_412qp"]
+[ext_resource type="AudioStream" uid="uid://c0pawhnnyu8m" path="res://assets/audio/passage_sfx.wav" id="6_o003k"]
 
 [node name="Game" type="Node2D"]
 process_mode = 3
@@ -42,3 +43,8 @@ scale = Vector2(2, 2)
 enabled = false
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
+
+[node name="CutsceneSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_o003k")
+volume_db = -32.59
+bus = &"SFX"

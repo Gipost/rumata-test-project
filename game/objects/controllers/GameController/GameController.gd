@@ -41,6 +41,7 @@ func start_victory_cutscene():
 	Globals.player.player_cam.enabled = false
 	camera.enabled = true
 	secret_passage.visible = true
+	$CutsceneSFX.play()
 	await _pan_camera_to(secret_passage.global_position)
 	await get_tree().create_timer(pause_time).timeout
 	#Плавные переходы камеры к проходу и обратно к игроку
