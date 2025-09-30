@@ -1,16 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://c51dppl4y7qa"]
+[gd_scene load_steps=5 format=3 uid="uid://c51dppl4y7qa"]
 
 [ext_resource type="PackedScene" uid="uid://c3f24ym2xnjh2" path="res://game/scenes/level.tscn" id="1_joedu"]
+[ext_resource type="Script" uid="uid://cv7d2tv5sv0n0" path="res://game/objects/controllers/GameController/GameController.gd" id="1_x4q2s"]
 [ext_resource type="PackedScene" uid="uid://dkc6phpj7pr0p" path="res://game/scenes/coins_counter.tscn" id="2_3n1n5"]
+[ext_resource type="PackedScene" uid="uid://wxvakm5ykbrh" path="res://game/scenes/menu.tscn" id="3_hu331"]
 
 [node name="Game" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_x4q2s")
 
 [node name="Level" parent="." instance=ExtResource("1_joedu")]
+process_mode = 1
 
 [node name="UI" type="CanvasLayer" parent="."]
+process_mode = 1
 
 [node name="Coins_counter" parent="UI" instance=ExtResource("2_3n1n5")]
 offset_left = 534.0
 offset_top = 19.0
 offset_right = 639.0
 offset_bottom = 49.0
+
+[node name="Menu" parent="UI" instance=ExtResource("3_hu331")]
+process_mode = 3
+visible = false
+offset_left = 328.0
+offset_top = 72.0
+offset_right = 585.0
+offset_bottom = 330.0
+scale = Vector2(2, 2)

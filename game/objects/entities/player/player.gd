@@ -88,3 +88,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			else:
 				player_spr.scale = Vector2(-1,1)
 			start_dash(mouse_pos)
+
+func take_damage():
+	Globals.Menu.switch_state(Globals.Menu.States.DEATH)

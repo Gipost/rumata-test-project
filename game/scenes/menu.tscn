@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://wxvakm5ykbrh"]
+
+[ext_resource type="Texture2D" uid="uid://blsgcdj4u57l5" path="res://assets/sprites/UI/menu_texture.png" id="1_octcs"]
+[ext_resource type="Script" uid="uid://cgjqq657tdv8c" path="res://game/objects/ui/menu.gd" id="1_qfcbr"]
+[ext_resource type="Texture2D" uid="uid://c1q48xnjdhx84" path="res://assets/sprites/UI/buttons_tex/retry_normal_btn.png" id="2_qfcbr"]
+[ext_resource type="Texture2D" uid="uid://cewo52hd8fm0c" path="res://assets/sprites/UI/buttons_tex/retry_pressed_btn.png" id="3_3v152"]
+[ext_resource type="Texture2D" uid="uid://cfe40sg3q5ho7" path="res://assets/sprites/UI/buttons_tex/exit_normal_btn.png" id="5_qhl36"]
+[ext_resource type="Texture2D" uid="uid://b2l3w1agb1bjo" path="res://assets/sprites/UI/buttons_tex/exit_pressed_btn.png" id="6_fhhxb"]
+[ext_resource type="FontFile" uid="uid://cuod0d4br38i" path="res://assets/fonts/yoster.ttf" id="7_fhhxb"]
+
+[node name="Menu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 257.0
+offset_bottom = 258.0
+script = ExtResource("1_qfcbr")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_octcs")
+
+[node name="retry_btn" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 112.0
+offset_right = 170.0
+offset_bottom = 146.0
+texture_normal = ExtResource("2_qfcbr")
+texture_pressed = ExtResource("3_3v152")
+
+[node name="exit_btn" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 158.0
+offset_right = 170.0
+offset_bottom = 192.0
+texture_normal = ExtResource("5_qhl36")
+texture_pressed = ExtResource("6_fhhxb")
+
+[node name="Menu_label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 16.0
+offset_right = 173.0
+offset_bottom = 52.0
+theme_override_fonts/font = ExtResource("7_fhhxb")
+theme_override_font_sizes/font_size = 36
+text = "Menu"
+horizontal_alignment = 1
+
+[node name="Result_label" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 64.0
+offset_top = 57.0
+offset_right = 320.0
+offset_bottom = 135.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.8744699, 0.67856604, 0, 1)
+theme_override_fonts/font = ExtResource("7_fhhxb")
+theme_override_font_sizes/font_size = 36
+text = "Result"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="retry_btn" to="." method="_on_retry_btn_pressed"]
