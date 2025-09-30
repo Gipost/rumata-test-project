@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=4 uid="uid://c3f24ym2xnjh2"]
+
+[ext_resource type="TileSet" uid="uid://cyuwc6pdg24lt" path="res://game/objects/tiles/Tileset.tres" id="1_uu78k"]
+[ext_resource type="Script" uid="uid://hf0dwthc86x4" path="res://game/objects/controllers/LevelController/LevelController.gd" id="1_xssv6"]
+[ext_resource type="PackedScene" uid="uid://bnwt2285mv60c" path="res://game/scenes/player.tscn" id="2_iddtf"]
+[ext_resource type="PackedScene" uid="uid://yuntsfmqkbef" path="res://game/scenes/coin.tscn" id="3_upydp"]
+[ext_resource type="Script" uid="uid://y8yeo2kqagx7" path="res://game/objects/controllers/GenerationController/GenerationController.gd" id="3_ycpq3"]
+[ext_resource type="PackedScene" uid="uid://ch2fjbsdpmi2u" path="res://game/scenes/smile.tscn" id="4_0aobv"]
+[ext_resource type="Script" uid="uid://0h2aoll2vohj" path="res://game/objects/controllers/GenerationController/room__base_generator.gd" id="4_iddtf"]
+
+[node name="Level" type="Node2D" node_paths=PackedStringArray("GenController", "tilemap")]
+script = ExtResource("1_xssv6")
+GenController = NodePath("Generation")
+tilemap = NodePath("TileMapLayer")
+PlayerScene = ExtResource("2_iddtf")
+CoinScene = ExtResource("3_upydp")
+EnemyScenes = Array[PackedScene]([ExtResource("4_0aobv")])
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAABAAAAAAACAAAAAAABAAAAAAADAAAAAAABAAAAAAAEAAAAAAABAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAGAAEAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAMAAAAAAAAAAAAGAAQAAAAAAAAAAAAGAAUAAAABAAAAAAAFAAUAAAABAAAAAAAEAAUAAAABAAAAAAADAAUAAAABAAAAAAACAAUAAAABAAAAAAABAAUAAAABAAAAAAAAAAUAAAABAAAAAAAAAAQAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAQAAAAAAAsAAAABAAMAAAAAAAsAAAABAAIAAAAAAAsAAAABAAEAAAAAAAsAAAACAAEAAAAAAAsAAAADAAEAAAAAAAsAAAAEAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAFAAIAAAAAAAAAAAAFAAMAAAAAAAAAAAAFAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAADAAQAAAAAAAsAAAACAAQAAAAAAAsAAAACAAMAAAAAAAsAAAACAAIAAAAAAAsAAAADAAMAAAAAAAsAAAADAAIAAAAAAAsAAAAEAAIAAAAAAAAAAAAEAAMAAAAAAAAAAAA=")
+tile_set = ExtResource("1_uu78k")
+
+[node name="Generation" type="Node2D" parent="." node_paths=PackedStringArray("room_generator")]
+script = ExtResource("3_ycpq3")
+room_generator = NodePath("RoomGenerator")
+
+[node name="RoomGenerator" type="Node2D" parent="Generation"]
+script = ExtResource("4_iddtf")
+wall_threshold = 0.4
+
+[node name="entities" type="Node2D" parent="."]
+
+[node name="interactibles" type="Node2D" parent="."]
+
+[connection signal="ready" from="TileMapLayer" to="Generation" method="_on_tile_map_layer_ready" flags=18]
+[connection signal="generation_finished" from="Generation/RoomGenerator" to="." method="on_gen_finished"]

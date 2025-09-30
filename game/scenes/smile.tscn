@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://ch2fjbsdpmi2u"]
+
+[ext_resource type="PackedScene" uid="uid://dj7we7moj3m00" path="res://game/scenes/enemy.tscn" id="1_g57dr"]
+[ext_resource type="Texture2D" uid="uid://dx077k2it0cib" path="res://assets/sprites/entity_sprites/enemies/slime/slime_idle_spr.png" id="2_p44wn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qv2ec"]
+atlas = ExtResource("2_p44wn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekg58"]
+atlas = ExtResource("2_p44wn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_owdtv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qv2ec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekg58")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bgs44"]
+radius = 9.055386
+
+[node name="Enemy" instance=ExtResource("1_g57dr")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_owdtv")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Collision" parent="." index="1"]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_bgs44")

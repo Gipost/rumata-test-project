@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://71nyy4hl0l5d"]
+
+[ext_resource type="Script" uid="uid://y8yeo2kqagx7" path="res://game/objects/controllers/GenerationController/GenerationController.gd" id="1_mgwp7"]
+[ext_resource type="Script" uid="uid://0h2aoll2vohj" path="res://game/objects/controllers/GenerationController/room__base_generator.gd" id="2_8uwcd"]
+
+[node name="Generation" type="Node2D" node_paths=PackedStringArray("room_generator")]
+script = ExtResource("1_mgwp7")
+room_generator = NodePath("RoomGenerator")
+
+[node name="RoomGenerator" type="Node2D" parent="."]
+script = ExtResource("2_8uwcd")
+wall_threshold = 0.4

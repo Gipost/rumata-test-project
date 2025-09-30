@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=3 uid="uid://dkc6phpj7pr0p"]
+
+[ext_resource type="Script" uid="uid://du0yqxbw2ej0d" path="res://game/objects/ui/coins_counter.gd" id="1_1wdyk"]
+[ext_resource type="Texture2D" uid="uid://btq2ejw6id04m" path="res://assets/sprites/UI/coins_counter_sprite.png" id="1_hdh6g"]
+[ext_resource type="FontFile" uid="uid://b70v28bjfrohx" path="res://assets/fonts/alagard.ttf" id="1_ikdu8"]
+[ext_resource type="Texture2D" uid="uid://df1kmqp7bokt8" path="res://assets/sprites/coin_sprite.png" id="2_hdh6g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_raaiw"]
+atlas = ExtResource("2_hdh6g")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sbqa"]
+atlas = ExtResource("2_hdh6g")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c63yc"]
+atlas = ExtResource("2_hdh6g")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_piweq"]
+atlas = ExtResource("2_hdh6g")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyeua"]
+atlas = ExtResource("2_hdh6g")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1wdyk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_raaiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2sbqa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c63yc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_piweq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyeua")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Coins_counter" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 241.0
+offset_top = 23.0
+offset_right = 346.0
+offset_bottom = 53.0
+script = ExtResource("1_1wdyk")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -34.0
+offset_top = -17.0
+offset_right = 68.0
+offset_bottom = 26.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_hdh6g")
+stretch_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_right = 80.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("1_ikdu8")
+theme_override_font_sizes/font_size = 32
+text = "0/8 "
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(94, 11)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_1wdyk")
+autoplay = "default"
