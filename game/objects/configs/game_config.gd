@@ -10,3 +10,4 @@ class_name GameConfig
 @export var dash_speed = 300.0
 @export var dash_time = 0.5
 @export var bounce_multiplier = 0.3
+@export var dash_cooldown = 1.0

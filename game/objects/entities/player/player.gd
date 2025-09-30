@@ -5,9 +5,11 @@ enum State { IDLE, MOVE, DASH, DEAD, CUTSCENE}
 @onready var dash_particles := $PlayerSprite/dash_particles
 @onready var player_cam := $Camera2D
 @onready var dash_SFX := $DashSFX
+@onready var dash_timer := $DashCooldown
 var current_state: State = State.IDLE
 var speed: float = 200.0
 var tween: Tween
+var can_dash : bool = true
 func _ready() -> void:
 	Globals.player = self
 	speed = Globals.game_config.speed
@@ -87,17 +89,23 @@ func start_dash(target_pos: Vector2) -> void:
 	switch_state(State.IDLE)
 #инпут для деша
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-		if current_state != State.DASH: # prevent spamming
+	if (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed) or Input.is_action_pressed("dash"):
+		if current_state != State.DASH and can_dash: # prevent spamming
 			var mouse_pos = get_global_mouse_position()
 			if self.global_position.x > mouse_pos.x:
 				player_spr.scale = Vector2(1,1)
 			else:
 				player_spr.scale = Vector2(-1,1)
 			start_dash(mouse_pos)
+			can_dash = false
+			dash_timer.start(Globals.game_config.dash_cooldown)
 
 func take_damage():
 	switch_state(State.DEAD)
 
 func coin_sfx():
 	$CoinSFX.play()
+
+
+func _on_dash_cooldown_timeout() -> void:
+	can_dash = true

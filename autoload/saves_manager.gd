@@ -56,7 +56,6 @@ func load_tutor_state():
 	var data = get_savefile()
 	if data:
 		Globals.show_tutor = data["show_tutor"]
-
 func load_seed():
 	var data = get_savefile()
 	if data:
