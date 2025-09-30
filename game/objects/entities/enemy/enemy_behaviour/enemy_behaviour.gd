@@ -18,6 +18,7 @@ func setup(e):
 	vision_area = enemy.get_node("VisionArea")
 	vision_area.body_entered.connect(_on_body_entered)
 	vision_area.body_exited.connect(_on_body_exited)
+	#Добавляем позиции для патрулирования, условно моб идет вправо потом обратно влево и потом вверх/вниз
 	if patrolling:
 		_patrol_origin = enemy.global_position
 		_patrol_points = [
@@ -28,10 +29,12 @@ func setup(e):
 		]
 
 func update(delta): 
+	#В случае нахождения игрока отмена патруля
 	if detected_player == null:
 		update_patrol(delta)
 	update_behaviour(delta)
 
+#очистка в случае смерти моба
 func cleanup(): 
 	if is_instance_valid(vision_area):
 		if vision_area.body_entered.is_connected(_on_body_entered):
@@ -40,12 +43,12 @@ func cleanup():
 			vision_area.body_exited.disconnect(_on_body_exited)
 	detected_player = null
 	cleanup_additional()
-
+#очистка для наследуемых классов
 func cleanup_additional(): pass
 
 func update_behaviour(delta): pass
 
-
+#сама реализация патрулирования
 func update_patrol(delta) -> void:
 	
 	if _patrol_points.is_empty():
@@ -71,7 +74,7 @@ func _switch_to_next_patrol_point() -> void:
 	_current_patrol_index = (_current_patrol_index + 1) % _patrol_points.size()
 
 func _on_body_entered(body: Node2D):
-	if body.is_in_group("player"):
+	if body is Player:
 		detected_player = body
 
 func _on_body_exited(body: Node2D):

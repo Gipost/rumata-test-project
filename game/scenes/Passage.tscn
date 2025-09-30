@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dky18qebxymtv"]
+
+[ext_resource type="Texture2D" uid="uid://c8jh1xv5wtwiu" path="res://assets/sprites/passage_sprite.png" id="1_334yw"]
+[ext_resource type="Script" uid="uid://o5omlqq33qri" path="res://game/objects/interactibles/passage/passage.gd" id="1_mr0u8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mr0u8"]
+size = Vector2(32, 26)
+
+[node name="Passage" type="Node2D"]
+visible = false
+z_index = 1
+script = ExtResource("1_mr0u8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_334yw")
+
+[node name="ReachRange" type="Area2D" parent="."]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReachRange"]
+shape = SubResource("RectangleShape2D_mr0u8")
+
+[connection signal="body_entered" from="ReachRange" to="." method="_on_reach_range_body_entered"]

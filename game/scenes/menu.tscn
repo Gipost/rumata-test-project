@@ -66,3 +66,4 @@ text = "Result"
 horizontal_alignment = 1
 
 [connection signal="pressed" from="retry_btn" to="." method="_on_retry_btn_pressed"]
+[connection signal="pressed" from="exit_btn" to="." method="_on_exit_btn_pressed"]

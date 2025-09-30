@@ -67,5 +67,4 @@ func _start_charge(enemy):
 
 
 func cleanup_additional():
-
 	charging = false

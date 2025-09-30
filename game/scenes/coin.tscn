@@ -48,7 +48,7 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_raaiw"]
 
-[node name="Coin" type="Node2D"]
+[node name="Coin" type="Node2D" groups=["coins"]]
 script = ExtResource("1_raaiw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -16,13 +16,7 @@ func _physics_process(delta: float) -> void:
 		State.MOVE:
 			move_state(delta)
 
-
-
-
-
-
 # States
-
 func idle_state(delta: float) -> void:
 	var input_dir = get_input()
 	if input_dir != Vector2.ZERO:
@@ -37,7 +31,7 @@ func move_state(delta: float) -> void:
 		move_and_slide()
 
 
-
+#управление персонажем
 func get_input() -> Vector2:
 	var dir = Vector2.ZERO
 	if Input.is_action_pressed("move_right"):
@@ -51,6 +45,7 @@ func get_input() -> Vector2:
 	if Input.is_action_pressed("move_up"):
 		dir.y -= 1
 	return dir.normalized()
+
 func switch_state(state : State):
 	match state:
 		State.IDLE:
@@ -67,6 +62,8 @@ func switch_state(state : State):
 		State.CUTSCENE:
 			player_spr.play("idle")
 			current_state = State.CUTSCENE
+
+#dash
 func start_dash(target_pos: Vector2) -> void:
 	switch_state(State.DASH)
 
@@ -81,12 +78,12 @@ func start_dash(target_pos: Vector2) -> void:
 	while timer.time_left > 0:
 		var collision := move_and_collide(velocity * get_process_delta_time())
 		if collision:
-			# Reflect velocity to bounce
+			# добавление баунса
 			velocity = velocity.bounce(collision.get_normal()) * bounce_multiplier
 		await get_tree().process_frame
 
 	switch_state(State.IDLE)
-
+#инпут для деша
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 		if current_state != State.DASH: # prevent spamming

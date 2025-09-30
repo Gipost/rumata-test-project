@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 WeightsHelper="*res://autoload/weights_helper.gd"
 Globals="*res://autoload/Globals.gd"
+SavesManager="*res://autoload/saves_manager.gd"
 
 [display]
 
@@ -35,7 +36,8 @@ folder_colors={
 
 [global_group]
 
-player=""
+enemies=""
+coins=""
 
 [input]
 

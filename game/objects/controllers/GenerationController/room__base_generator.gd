@@ -23,22 +23,35 @@ func setup():
 	if gen_room_on_start:
 		generate_room(room_width, room_height)
 	emit_signal("generation_finished")
+
 func setup_noise():
 	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
 	noise.frequency = noise_scale
-	noise.seed = randi()
-func apply_wall_noise(w: int, h: int):
+	#проверка на то загрузился ли сид
+	if Globals.room_seed == null:
+		if Globals.game_load:
+			print_debug("No seed loaded!")
+		noise.seed = randi()
+		Globals.room_seed = noise.seed
+	else: 
+		noise.seed = Globals.room_seed 
+
+
+#заполняем землю шумом
+func apply_ground_noise(w: int, h: int):
 	for y in range(1, h - 1):
 		for x in range(1, w - 1):
 			var pos := Vector2i(x, y)
 			var n := noise.get_noise_2d(x, y)
 			if n < wall_threshold:
 				tilemap.set_cells_terrain_connect([pos],0, TERRAIN_GROUND,false)
+
 func generate_room(w: int, h: int):
 	generate_wall_borders(w,h)
-	apply_wall_noise(w,h)
+	apply_ground_noise(w,h)
 	fill_wall_cells(w,h)
-	connect_terrain(w,h)
+
+#генерим стены на границе карты
 func generate_wall_borders(w: int, h: int):
 	# очистка карты перед генерацией
 	tilemap.clear()
@@ -50,7 +63,7 @@ func generate_wall_borders(w: int, h: int):
 			if x == 0 or x == w - 1 or y == 0 or y == h - 1:
 				tilemap.set_cells_terrain_connect([pos],0, TERRAIN_WALL,false)
 
-
+#заполняем оставшиеся позиции на карте стенами, после генерации земли шумом
 func fill_wall_cells(w: int, h: int):
 	for y in range(h):
 		for x in range(w):
@@ -59,15 +72,7 @@ func fill_wall_cells(w: int, h: int):
 			if cell_id == -1:
 				tilemap.set_cells_terrain_connect([pos],0, TERRAIN_WALL,false)
 
-func connect_terrain(w: int, h: int):
-	for y in range(h):
-		for x in range(w):
-			var pos := Vector2i(x, y)
-			var cell_id = tilemap.get_cell_atlas_coords(pos)
-			if cell_id != Vector2i(-1,-1) and cell_id.y == 0:
-				tilemap.set_cells_terrain_connect([pos],0, TERRAIN_WALL,false)
-
-
+#случайный свободный тайл
 func get_random_free_tile():
 	var ground_tiles: Array[Vector2i] = []
 	for y in range(room_height):
@@ -90,6 +95,8 @@ func get_random_free_tile():
 		return world_pos
 	else:
 		return get_random_free_tile()
+
+#helper на проверку свободен ли тайл 
 func is_tile_free(world_pos: Vector2i) -> bool:
 
 	var params := PhysicsPointQueryParameters2D.new()
