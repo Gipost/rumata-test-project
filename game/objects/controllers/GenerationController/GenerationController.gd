@@ -19,10 +19,10 @@ func spawn_coins(CoinScene : PackedScene,interactibles_path:Node2D):
 		var coin_node = CoinScene.instantiate()
 		interactibles_path.add_child(coin_node)
 		coin_node.global_position = pos
-func spawn_enemies(enemy_count:int,EnemyScenes:Array[PackedScene],enemies_path:Node2D):
+func spawn_enemies(enemy_count:int,EnemyScenes:Dictionary,enemies_path:Node2D):
 	for i in enemy_count:
 		var pos = room_generator.get_random_free_tile()
-		var enemy_scene = EnemyScenes.pick_random()
+		var enemy_scene = WeightHelper.pick_weighted(EnemyScenes)
 		var enemy_node = enemy_scene.instantiate()
 		enemies_path.add_child(enemy_node)
 		enemy_node.global_position = pos
