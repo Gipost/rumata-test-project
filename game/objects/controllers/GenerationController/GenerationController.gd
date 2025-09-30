@@ -26,3 +26,9 @@ func spawn_enemies(enemy_count:int,EnemyScenes:Dictionary,enemies_path:Node2D):
 		var enemy_node = enemy_scene.instantiate()
 		enemies_path.add_child(enemy_node)
 		enemy_node.global_position = pos
+func spawn_passage(PassageScene : PackedScene,interactibles_path:Node2D):
+	var pos = room_generator.get_random_free_tile()
+	var passage_node = PassageScene.instantiate()
+	interactibles_path.add_child(passage_node)
+	passage_node.global_position = pos
+	return passage_node

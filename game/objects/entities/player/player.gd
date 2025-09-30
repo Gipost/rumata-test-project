@@ -1,11 +1,14 @@
 class_name Player
 extends Entity
-enum State { IDLE, MOVE, DASH, DEAD }
+enum State { IDLE, MOVE, DASH, DEAD, CUTSCENE}
 @onready var player_spr := $PlayerSprite
 @onready var dash_particles := $PlayerSprite/dash_particles
+@onready var player_cam := $Camera2D
 var current_state: State = State.IDLE
 var speed: float = 200.0
 var tween: Tween
+func _ready() -> void:
+	Globals.player = self
 func _physics_process(delta: float) -> void:
 	match current_state:
 		State.IDLE:
@@ -59,6 +62,11 @@ func switch_state(state : State):
 		State.DASH:
 			player_spr.play("atk") 
 			current_state = State.DASH
+		State.DEAD:
+			Globals.Menu.switch_state(Globals.Menu.States.DEATH)
+		State.CUTSCENE:
+			player_spr.play("idle")
+			current_state = State.CUTSCENE
 func start_dash(target_pos: Vector2) -> void:
 	switch_state(State.DASH)
 
@@ -90,4 +98,4 @@ func _unhandled_input(event: InputEvent) -> void:
 			start_dash(mouse_pos)
 
 func take_damage():
-	Globals.Menu.switch_state(Globals.Menu.States.DEATH)
+	switch_state(State.DEAD)
