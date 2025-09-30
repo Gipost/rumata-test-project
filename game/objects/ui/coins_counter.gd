@@ -6,7 +6,7 @@ func _ready() -> void:
 	Globals.connect("game_controller_ready", _on_gc_ready)
 
 func update_label():
-	counter_label.text = str(Globals.GameController.collected_coins) + "/" + str(Globals.GameController.total_coins)
+	counter_label.text = str(Globals.GameController.collected_coins) + "/" + str(Globals.game_config.total_coins)
 
 func _on_gc_ready():
 	update_label()

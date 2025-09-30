@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="EnemyConfig" load_steps=2 format=3 uid="uid://dlmy0ip57l2nd"]
+
+[ext_resource type="Script" uid="uid://dc0q5evy6524p" path="res://game/objects/configs/enemy_config.gd" id="1_63ta0"]
+
+[resource]
+script = ExtResource("1_63ta0")
+slime_useCharge = false
+metadata/_custom_type_script = "uid://dc0q5evy6524p"

@@ -15,6 +15,7 @@ var detected_player: Node2D = null
 
 func setup(e):
 	enemy = e
+	setup_config()
 	vision_area = enemy.get_node("VisionArea")
 	vision_area.body_entered.connect(_on_body_entered)
 	vision_area.body_exited.connect(_on_body_exited)
@@ -28,6 +29,17 @@ func setup(e):
 			_patrol_origin,                                # back down
 		]
 
+
+#применение конфига при инициализации
+func setup_config():
+	match enemy.entity_id:
+		"Slime":
+			patrolling = Globals.enemy_config.slime_Patrolling
+			patrol_distance = Globals.enemy_config.slime_Patrol_distance
+			patrol_speed = Globals.enemy_config.slime_Speed
+	setup_config_additional()
+
+func setup_config_additional(): pass
 func update(delta): 
 	#В случае нахождения игрока отмена патруля
 	if detected_player == null:

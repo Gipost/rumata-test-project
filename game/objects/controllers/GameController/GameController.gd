@@ -10,7 +10,7 @@ var secret_passage # path to passage
 @export var pause_time: float = 1.5
 
 func _ready() -> void:
-	total_coins = Globals.total_coins
+	total_coins = Globals.game_config.total_coins
 	Globals.GameController = self
 	if Globals.game_load:
 		load_collected_coins()

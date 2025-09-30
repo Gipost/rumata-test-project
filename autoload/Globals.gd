@@ -3,11 +3,12 @@ var GameController
 var LevelController
 var Menu
 var player
-
+var game_config: GameConfig = load("res://configs/game_config.tres")
+var enemy_config: EnemyConfig = load("res://configs/enemy_config.tres")
 signal game_controller_ready
 
 var room_seed
-var total_coins = 10
+
 var game_load:bool = true
 func _ready() -> void:
 	#загрузка сейва

@@ -18,7 +18,7 @@ func on_gen_finished() -> void:
 	if !Globals.game_load:
 		PlayerNode = GenController.spawn_player(PlayerScene,$entities)
 		GenController.spawn_coins(CoinScene,$interactibles)
-		GenController.spawn_enemies(5,EnemyScenes,$entities)
+		GenController.spawn_enemies(Globals.game_config.enemy_count,EnemyScenes,$entities)
 		passage = GenController.spawn_passage(load("res://game/scenes/Passage.tscn"),$interactibles)
 	#загрузка объектов с сейва
 	else: 

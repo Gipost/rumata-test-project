@@ -40,8 +40,17 @@ func update_behaviour(delta):
 			enemy.velocity = dir * speed
 			enemy.move_and_slide()
 		else:
-			if can_charge:
+			if can_charge and use_charging:
 				_start_charge(enemy)
+
+func setup_config_additional():
+	match enemy.entity_id:
+		"Slime":
+			speed = Globals.enemy_config.slime_Speed
+			use_charging = Globals.enemy_config.slime_useCharge
+			charge_speed = Globals.enemy_config.slime_ChargeSpeed
+			charge_prep_time = Globals.enemy_config.slime_ChargePrep
+			charge_cooldown = Globals.enemy_config.slime_ChargeCooldown
 
 func _start_charge(enemy):
 	charging = true

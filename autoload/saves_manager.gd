@@ -4,7 +4,8 @@ extends Node2D
 func save_game():
 	var save_data = {}
 	save_data["seed"] = Globals.room_seed
-	
+	save_data["room_height"] = Globals.game_config.room_height
+	save_data["room_width"] = Globals.game_config.room_width
 	var player = Globals.player
 	if player:
 		save_data["player"] = {

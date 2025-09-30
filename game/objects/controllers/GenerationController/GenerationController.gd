@@ -18,7 +18,7 @@ func spawn_player(player_scene:PackedScene,entities_path:Node2D):
 
 #спавнер монеток
 func spawn_coins(CoinScene : PackedScene,interactibles_path:Node2D):
-	for coin in Globals.total_coins:
+	for coin in Globals.game_config.total_coins:
 		var pos = room_generator.get_random_free_tile()
 		var coin_node = CoinScene.instantiate()
 		interactibles_path.add_child(coin_node)

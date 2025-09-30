@@ -2,9 +2,9 @@
 class_name  RoomBaseGenerator
 extends Node2D
 ##размер по x
-@export var room_width: int = 30
+var room_width: int = 30
 ##размер по y
-@export var room_height: int = 30
+var room_height: int = 30
 var tilemap: TileMapLayer
 ##Генерировать ли комнату при инициализации, для premade комнат если таковые будут
 @export var gen_room_on_start : bool = true
@@ -20,6 +20,15 @@ var noise := FastNoiseLite.new()
 @export var wall_threshold: float = 0.0005
 func setup():
 	setup_noise()
+	if Globals.game_load:
+		var data = SavesManager.get_savefile()
+		if data:
+			room_height = data["room_height"]
+			room_width = data["room_width"]
+	else:
+		room_height = Globals.game_config.room_height
+		room_width = Globals.game_config.room_width
+		
 	if gen_room_on_start:
 		generate_room(room_width, room_height)
 	emit_signal("generation_finished")

@@ -9,6 +9,7 @@ var speed: float = 200.0
 var tween: Tween
 func _ready() -> void:
 	Globals.player = self
+	speed = Globals.game_config.speed
 func _physics_process(delta: float) -> void:
 	match current_state:
 		State.IDLE:
@@ -68,9 +69,9 @@ func start_dash(target_pos: Vector2) -> void:
 	switch_state(State.DASH)
 
 	var dir = (target_pos - global_position).normalized()
-	var dash_speed = 300.0
-	var dash_time = 0.5
-	var bounce_multiplier = 0.3
+	var dash_speed = Globals.game_config.dash_speed
+	var dash_time = Globals.game_config.dash_time
+	var bounce_multiplier = Globals.game_config.bounce_multiplier
 	var velocity = dir * dash_speed
 	dash_particles.emitting = true
 	var timer := get_tree().create_timer(dash_time)
