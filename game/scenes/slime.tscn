@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=3 uid="uid://ch2fjbsdpmi2u"]
+
+[ext_resource type="PackedScene" uid="uid://dj7we7moj3m00" path="res://game/scenes/enemy.tscn" id="1_vfhdm"]
+[ext_resource type="Script" uid="uid://rdcu1cd0ol7t" path="res://game/objects/entities/enemy/enemy_behaviour/chaser_behaviour.gd" id="2_6fmub"]
+[ext_resource type="Texture2D" uid="uid://dx077k2it0cib" path="res://assets/sprites/entity_sprites/enemies/slime/slime_idle_spr.png" id="3_8v8ch"]
+
+[sub_resource type="Resource" id="Resource_qv2ec"]
+resource_local_to_scene = true
+script = ExtResource("2_6fmub")
+use_charging = true
+charge_cooldown = 1.5
+metadata/_custom_type_script = "uid://rdcu1cd0ol7t"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qv2ec"]
+atlas = ExtResource("3_8v8ch")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekg58"]
+atlas = ExtResource("3_8v8ch")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_owdtv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qv2ec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekg58")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bgs44"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p44wn"]
+radius = 12.0415945
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qv2ec"]
+radius = 192.0
+
+[node name="Enemy" instance=ExtResource("1_vfhdm")]
+behaviour = SubResource("Resource_qv2ec")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_owdtv")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Collision" parent="." index="1"]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_bgs44")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactArea" index="0"]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_p44wn")
+
+[node name="Collision" type="CollisionShape2D" parent="VisionArea" index="0"]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_qv2ec")

@@ -1,6 +1,6 @@
 class_name Player
 extends Entity
-enum State { IDLE, MOVE, DASH }
+enum State { IDLE, MOVE, DASH, DEAD }
 @onready var player_spr := $PlayerSprite
 @onready var dash_particles := $PlayerSprite/dash_particles
 var current_state: State = State.IDLE

@@ -1,7 +1,22 @@
-[gd_scene format=3 uid="uid://dj7we7moj3m00"]
+[gd_scene load_steps=2 format=3 uid="uid://dj7we7moj3m00"]
+
+[ext_resource type="Script" uid="uid://ci486v3hyuxtj" path="res://game/objects/entities/enemy/enemy.gd" id="1_d070t"]
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_d070t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+
+[node name="ContactArea" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="VisionArea" type="Area2D" parent="."]
+collision_layer = 2
+
+[connection signal="body_entered" from="ContactArea" to="." method="_on_contact_area_body_entered"]

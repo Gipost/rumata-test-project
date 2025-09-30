@@ -33,6 +33,10 @@ folder_colors={
 "res://game/": "red"
 }
 
+[global_group]
+
+player=""
+
 [input]
 
 move_right={
