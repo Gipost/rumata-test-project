@@ -13,6 +13,7 @@ const TERRAIN_WALL := 0
 const TERRAIN_GROUND := 1
 const Dirt_Tile := Vector2i(0,11)
 const Wall_tile := Vector2i(0,0)
+const Wall_tile_down := Vector2i(1,0)
 
 var noise := FastNoiseLite.new()
 @export var noise_scale: float = 0.1
@@ -90,7 +91,7 @@ func get_random_free_tile():
 			var data = tilemap.get_cell_source_id(pos)
 			if data != -1:
 				var atlas_coords = tilemap.get_cell_atlas_coords(pos)
-				if atlas_coords == Dirt_Tile:  
+				if atlas_coords != Wall_tile and atlas_coords != Wall_tile_down:  
 					ground_tiles.append(pos)
 
 	if ground_tiles.is_empty():
