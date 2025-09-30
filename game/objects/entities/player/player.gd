@@ -4,6 +4,7 @@ enum State { IDLE, MOVE, DASH, DEAD, CUTSCENE}
 @onready var player_spr := $PlayerSprite
 @onready var dash_particles := $PlayerSprite/dash_particles
 @onready var player_cam := $Camera2D
+@onready var dash_SFX := $DashSFX
 var current_state: State = State.IDLE
 var speed: float = 200.0
 var tween: Tween
@@ -57,6 +58,7 @@ func switch_state(state : State):
 			current_state = State.MOVE
 		State.DASH:
 			player_spr.play("atk") 
+			dash_SFX.play()
 			current_state = State.DASH
 		State.DEAD:
 			Globals.Menu.switch_state(Globals.Menu.States.DEATH)
@@ -67,7 +69,6 @@ func switch_state(state : State):
 #dash
 func start_dash(target_pos: Vector2) -> void:
 	switch_state(State.DASH)
-
 	var dir = (target_pos - global_position).normalized()
 	var dash_speed = Globals.game_config.dash_speed
 	var dash_time = Globals.game_config.dash_time

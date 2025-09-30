@@ -1,4 +1,5 @@
 class_name WeightHelper
+extends Node
 #Хелпер по подбору по весам
 static func pick_weighted(dict: Dictionary):
 	var total_weight = 0
