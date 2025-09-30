@@ -1,0 +1,99 @@
+[gd_scene load_steps=6 format=3 uid="uid://xtkhnr8ppmdb"]
+
+[ext_resource type="Texture2D" uid="uid://blsgcdj4u57l5" path="res://assets/sprites/UI/menu_texture.png" id="1_cfpnl"]
+[ext_resource type="Script" uid="uid://cq676xpq7husc" path="res://game/objects/ui/instruction.gd" id="1_vwjqb"]
+[ext_resource type="FontFile" uid="uid://cuod0d4br38i" path="res://assets/fonts/yoster.ttf" id="2_y48mb"]
+[ext_resource type="Texture2D" uid="uid://cfe40sg3q5ho7" path="res://assets/sprites/UI/buttons_tex/exit_normal_btn.png" id="4_hmhl7"]
+[ext_resource type="Texture2D" uid="uid://b2l3w1agb1bjo" path="res://assets/sprites/UI/buttons_tex/exit_pressed_btn.png" id="5_e24pd"]
+
+[node name="Instruction" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 256.0
+offset_bottom = 256.0
+script = ExtResource("1_vwjqb")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_cfpnl")
+
+[node name="Controls" type="Label" parent="."]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 16.0
+offset_right = 213.0
+offset_bottom = 52.0
+theme_override_fonts/font = ExtResource("2_y48mb")
+theme_override_font_sizes/font_size = 36
+text = "Controls"
+horizontal_alignment = 1
+
+[node name="Menu_label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 62.0
+offset_right = 513.0
+offset_bottom = 202.0
+scale = Vector2(0.4, 0.4)
+theme_override_fonts/font = ExtResource("2_y48mb")
+theme_override_font_sizes/font_size = 36
+text = "Movement - WASD/Arrows
+Dash - RMB / space
+
+
+Collect all coins to win"
+horizontal_alignment = 1
+
+[node name="Menu_label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 151.99998
+offset_right = 513.0
+offset_bottom = 214.50002
+scale = Vector2(0.4, 0.4)
+theme_override_colors/font_color = Color(0.9688254, 0.72879624, 0, 1)
+theme_override_fonts/font = ExtResource("2_y48mb")
+theme_override_font_sizes/font_size = 36
+text = "Beware of intruders!"
+horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 39.0
+offset_top = 174.0
+offset_right = 63.0
+offset_bottom = 206.0
+
+[node name="Menu_label4" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 7.999996
+offset_top = 13.0
+offset_right = 487.0
+offset_bottom = 52.99997
+scale = Vector2(0.4, 0.4)
+theme_override_fonts/font = ExtResource("2_y48mb")
+theme_override_font_sizes/font_size = 36
+text = "dont show this again"
+horizontal_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="Control"]
+layout_mode = 0
+offset_top = 8.0
+offset_right = 24.0
+offset_bottom = 32.0
+shortcut_feedback = false
+shortcut_in_tooltip = false
+
+[node name="exit_btn" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 216.0
+offset_right = 170.0
+offset_bottom = 250.0
+texture_normal = ExtResource("4_hmhl7")
+texture_pressed = ExtResource("5_e24pd")
+
+[connection signal="pressed" from="exit_btn" to="." method="_on_exit_btn_pressed"]

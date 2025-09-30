@@ -6,6 +6,7 @@ func save_game():
 	save_data["seed"] = Globals.room_seed
 	save_data["room_height"] = Globals.game_config.room_height
 	save_data["room_width"] = Globals.game_config.room_width
+	save_data["show_tutor"] = Globals.show_tutor
 	var player = Globals.player
 	if player:
 		save_data["player"] = {
@@ -50,6 +51,11 @@ func get_savefile():
 	if typeof(data) != TYPE_DICTIONARY:
 		return
 	return data
+
+func load_tutor_state():
+	var data = get_savefile()
+	if data:
+		Globals.show_tutor = data["show_tutor"]
 
 func load_seed():
 	var data = get_savefile()
