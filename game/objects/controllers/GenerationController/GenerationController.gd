@@ -2,6 +2,7 @@ class_name  GenerationController
 
 extends Node2D
 @export var room_generator : RoomBaseGenerator
+var player_node
 
 func _on_tile_map_layer_ready(source: Node) -> void:
 	room_generator.tilemap = source 
@@ -20,6 +21,7 @@ func spawn_player(player_scene:PackedScene,entities_path:Node2D):
 func spawn_coins(CoinScene : PackedScene,interactibles_path:Node2D):
 	for coin in Globals.game_config.total_coins:
 		var pos = room_generator.get_random_free_tile()
+		pos = await can_reach_player(pos)
 		var coin_node = CoinScene.instantiate()
 		interactibles_path.add_child(coin_node)
 		coin_node.global_position = pos
@@ -28,6 +30,7 @@ func spawn_coins(CoinScene : PackedScene,interactibles_path:Node2D):
 func spawn_enemies(enemy_count:int,EnemyScenes:Dictionary,enemies_path:Node2D):
 	for i in enemy_count:
 		var pos = room_generator.get_random_free_tile()
+		pos = await can_reach_player(pos)
 		var enemy_scene = WeightHelper.pick_weighted(EnemyScenes)
 		var enemy_node = enemy_scene.instantiate()
 		enemies_path.add_child(enemy_node)
@@ -36,12 +39,19 @@ func spawn_enemies(enemy_count:int,EnemyScenes:Dictionary,enemies_path:Node2D):
 #спавнер прохода 
 func spawn_passage(PassageScene : PackedScene,interactibles_path:Node2D):
 	var pos = room_generator.get_random_free_tile()
+	pos = await  can_reach_player(pos)
 	var passage_node = PassageScene.instantiate()
 	interactibles_path.add_child(passage_node)
 	passage_node.global_position = pos
 	return passage_node
 
-
+#проверка может ли игрок достигнуть нужный нам объект(чтобы монетки на спавнились в карманах)
+func can_reach_player(pos:Vector2):
+	if ( await room_generator.is_reachable(player_node.global_position,pos) == false):
+		pos = room_generator.get_random_free_tile()
+		can_reach_player(pos)
+	return pos
+	
 
 
 

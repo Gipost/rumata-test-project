@@ -117,3 +117,13 @@ func is_tile_free(world_pos: Vector2i) -> bool:
 	var space_state = get_world_2d().direct_space_state
 	var result = space_state.intersect_point(params, 1) 
 	return result.is_empty()
+
+
+#проверка есть ли путь до нужной позиции
+func is_reachable(initial_pos: Vector2, target_pos: Vector2) -> bool:
+	var nav_map = tilemap.get_navigation_map()
+	#ждем один фрейм чтобы навигация заработала иначе path будет возвращать пустой массив
+	await get_tree().process_frame 
+	var path = NavigationServer2D.map_get_path(nav_map,initial_pos, target_pos, false)
+	#print(path)
+	return path.size() > 0
