@@ -4,8 +4,7 @@ extends Interactible
 func item_pickUP(body: Node2D) -> void:
 	if body is Player:
 		if has_node("PickUpRange"):
-			$PickUpRange.monitoring = false
-
+			$PickUpRange.set_deferred("monitoring",false)
 		# tween to player
 		var tween := create_tween()
 		tween.tween_property(self, "global_position", body.global_position, 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
