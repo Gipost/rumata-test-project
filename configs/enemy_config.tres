@@ -4,5 +4,4 @@
 
 [resource]
 script = ExtResource("1_63ta0")
-slime_useCharge = false
 metadata/_custom_type_script = "uid://dc0q5evy6524p"
