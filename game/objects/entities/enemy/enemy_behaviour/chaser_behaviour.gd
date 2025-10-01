@@ -51,6 +51,12 @@ func setup_config_additional():
 			charge_speed = Globals.enemy_config.slime_ChargeSpeed
 			charge_prep_time = Globals.enemy_config.slime_ChargePrep
 			charge_cooldown = Globals.enemy_config.slime_ChargeCooldown
+		"Minotaur":
+			speed = Globals.enemy_config.minotaur_Speed
+			use_charging = Globals.enemy_config.minotaur_useCharge
+			charge_speed = Globals.enemy_config.minotaur_ChargeSpeed
+			charge_prep_time = Globals.enemy_config.minotaur_ChargePrep
+			charge_cooldown = Globals.enemy_config.minotaur_ChargeCooldown
 
 func _start_charge(enemy):
 	charging = true

@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" uid="uid://ci486v3hyuxtj" path="res://game/objects/entities/enemy/enemy.gd" id="1_d070t"]
 
-[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("animated_spr") groups=["enemies"]]
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_d070t")
+animated_spr = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 

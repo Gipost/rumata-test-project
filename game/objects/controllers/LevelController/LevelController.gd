@@ -5,7 +5,7 @@ extends Node2D
 @export var PlayerScene : PackedScene
 @export var CoinScene : PackedScene
 ##дикшинари с мобами и весами для определения шанса их спавнов
-@export var EnemyScenes: Dictionary = {load("res://game/scenes/slime.tscn") : 1.0}
+@export var EnemyScenes: Dictionary = {load("res://game/scenes/slime.tscn") : 0.5, load("res://game/scenes/minotaur.tscn") : 0.5}
 
 var passage
 var PlayerNode

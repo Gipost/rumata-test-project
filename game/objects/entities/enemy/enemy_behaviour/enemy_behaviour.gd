@@ -37,6 +37,10 @@ func setup_config():
 			patrolling = Globals.enemy_config.slime_Patrolling
 			patrol_distance = Globals.enemy_config.slime_Patrol_distance
 			patrol_speed = Globals.enemy_config.slime_Speed
+		"Minotaur":
+			patrolling = Globals.enemy_config.minotaur_Patrolling
+			patrol_distance = Globals.enemy_config.minotaur_Patrol_distance
+			patrol_speed = Globals.enemy_config.minotaur_Speed
 	setup_config_additional()
 
 func setup_config_additional(): pass
