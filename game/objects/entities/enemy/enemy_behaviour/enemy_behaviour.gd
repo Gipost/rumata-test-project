@@ -46,9 +46,10 @@ func setup_config():
 func setup_config_additional(): pass
 func update(delta): 
 	#В случае нахождения игрока отмена патруля
+	update_behaviour(delta)
 	if detected_player == null:
 		update_patrol(delta)
-	update_behaviour(delta)
+
 
 #очистка в случае смерти моба
 func cleanup(): 
