@@ -33,8 +33,9 @@ func spawn_enemies(enemy_count:int,EnemyScenes:Dictionary,enemies_path:Node2D):
 		pos = await can_reach_player(pos)
 		var enemy_scene = WeightHelper.pick_weighted(EnemyScenes)
 		var enemy_node = enemy_scene.instantiate()
-		enemies_path.add_child(enemy_node)
 		enemy_node.global_position = pos
+		enemies_path.add_child(enemy_node)
+
 
 #спавнер прохода 
 func spawn_passage(PassageScene : PackedScene,interactibles_path:Node2D):
