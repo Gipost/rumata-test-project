@@ -1,4 +1,4 @@
-⚔ **Top-Down Mini-Game (Godot Test Task)** ⚔
+⚔ **Top-Down Mini-Game** ⚔
 ![скриншот](https://i.postimg.cc/Vvh0tGqB/rumata.png)
 
 Функционал:
@@ -13,9 +13,9 @@
 	
 	Простая катцена по завершению уровня
 	
-	UI через control nodes.
+	UI.
 
-	Система сохранений в виде дикшинари в json.
+	Система сохранений Dictionary to json.
 
 
 На этом все, Спасибо за внимание!
